@@ -54,7 +54,7 @@ def custom_loss(y_true, y_pred):
     return mse_loss + mae_loss
 
 # Compile the model with the custom loss function
-model.compile(loss=custom_loss, optimizer='adam')    # RMS prop works properly
+model.compile(loss=custom_loss, optimizer='RMSprop')    # RMS prop works properly
 
 # Define early stopping callback
 early_stopping = EarlyStopping(monitor='val_loss', patience=10, min_delta=0.001)
