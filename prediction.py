@@ -30,7 +30,7 @@ reconstructions = model_failure.predict(new_data)
 mse = np.mean((reconstructions - new_data) ** 2, axis=(1, 2))
 
 # Identify anomalies using Local Outlier Factor (LOF)
-lof = LocalOutlierFactor(n_neighbors=20, contamination=0.1)
+lof = LocalOutlierFactor(n_neighbors=10, contamination=0.013)
 anomaly_scores = lof.fit_predict(mse.reshape(-1, 1))
 
 # Convert anomaly scores to 0/1 labels
@@ -104,7 +104,7 @@ try:
     print(f"Mean Absolute Error (MAE): {mae:.3f}")
 
     # Visualize the results
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(12, 8))
     plt.plot(new_df['percentage_close_to_failure'], new_df['date_time'])
     plt.xlabel('Date Time')
     plt.ylabel('Failure')
