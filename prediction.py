@@ -1,3 +1,5 @@
+"""This model is the prediction for the new dataset. the two model trained are failure and scores.
+the model first predicts the failure and uses the updated dataset to score the failure with the custom loss formula"""
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
@@ -13,7 +15,7 @@ import matplotlib.pyplot as plt
 model_failure = load_model('my_model_failure.keras')
 
 # Load the new dataset to predict
-new_df = pd.read_excel('C:/Users/haris/OneDrive/Desktop/NCV/project code/ml model/timestamp_data.xlsx')
+new_df = pd.read_excel('C:/Users/haris/OneDrive/Desktop/NCV/project code/ml model/output.xlsx')
 
 # Select only the numerical columns from the new dataset
 numerical_cols = new_df.select_dtypes(include=[np.number]).columns
@@ -93,7 +95,7 @@ try:
 
     # Add the percentage scores to the dataset
     new_df['percentage_close_to_failure'] = percentages
-    new_df['date_time'] = pd.to_datetime(new_df['date_time'])
+    #
     new_df.to_excel('output_data.xlsx', index=False)
 
     # Evaluate the score prediction model
@@ -105,7 +107,7 @@ try:
 
     # Visualize the results
     plt.figure(figsize=(12, 8))
-    plt.plot(new_df['percentage_close_to_failure'], new_df['date_time'])
+    plt.plot(new_df['percentage_close_to_failure'], new_df['Time stamp'])
     plt.xlabel('Date Time')
     plt.ylabel('Failure')
     plt.title('Predicted Failure Likelihood Scores')

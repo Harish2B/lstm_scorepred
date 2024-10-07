@@ -75,5 +75,4 @@ for i in range(len(test_pred)):
     score = np.abs(test_pred[i, 0])  # Take the absolute value of the predicted score
     percentage = score / np.max(np.abs(test_pred[:, 0])) *100   # percent to failure
     percentages.append(percentage)
-
 model.save('my_model.keras')
