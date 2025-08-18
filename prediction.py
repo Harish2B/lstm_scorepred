@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 model_failure = load_model('my_model_failure.keras')
 
 # Load the new dataset to predict
-new_df = pd.read_excel('C:/Users/haris/OneDrive/Desktop/NCV/project code/ml model/timestamp_data.xlsx')
+new_df = pd.read_excel('C:/Users/haris/OneDrive/Desktop/NCV/project code/ml model/output.xlsx')
 
 # Select only the numerical columns from the new dataset
 numerical_cols = new_df.select_dtypes(include=[np.number]).columns
@@ -107,7 +107,7 @@ try:
 
     # Visualize the results
     plt.figure(figsize=(12, 8))
-    plt.plot(new_df['percentage_close_to_failure'], new_df['date_time'])
+    plt.plot(new_df['percentage_close_to_failure'], new_df['Time stamp'])
     plt.xlabel('Date Time')
     plt.ylabel('Failure')
     plt.title('Predicted Failure Likelihood Scores')

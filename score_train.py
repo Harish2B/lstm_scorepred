@@ -66,6 +66,7 @@ def train_lstm_model(dataframes):
     model.fit(train_data, train_targets, epochs=25, batch_size=16, validation_data=(val_data, val_targets),
               callbacks=[early_stopping])
 
+<<<<<<< HEAD
     # Predict the failure likelihood scores for the test data
     data = data.reshape(-1, 1, data.shape[1] // 1)
     test_pred = model.predict(data)
@@ -93,3 +94,12 @@ dataframes = [
 ]
 
 model = train_lstm_model(dataframes)
+=======
+# Calculate the percentage score for each item
+percentages = []
+for i in range(len(test_pred)):
+    score = np.abs(test_pred[i, 0])  # Take the absolute value of the predicted score
+    percentage = score / np.max(np.abs(test_pred[:, 0])) *100   # percent to failure
+    percentages.append(percentage)
+model.save('my_model.keras')
+>>>>>>> 15f25f1 (..)
